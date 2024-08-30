@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "showcase"
+version = "0.1.0"
+description = "A showcase of a data engineering project by Christophe Lamarche."
+authors = ["Christophe Lamarche <dev@christophelamarche.ca>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "~3.11"
+Django = "^5.1"
+dagster = "^1.8.2"
+pydantic = "^2.8.2"
+fastapi = "^0.112.2"
+dagster-webserver = "^1.8.2"
+dagster-docker = "^0.24.2"
+langchain = "^0.2.14"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6.2"
+pytest = "^8.3.2"
+pre-commit = "^3.8.0"
+pytest-django = "^4.8.0"
+ipykernel = "^6.29.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.dagster]
+module_name = "extractor.definitions"
+code_location_name = "extractor"
+
+
+[tool.ruff]
+line-length = 5000
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["FA102", "N806", "PGH003"]
+pydocstyle.convention = "google"
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+fixable = ["ALL"]
+
+[tool.ruff.lint.pylint]
+max-positional-args = 1
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
